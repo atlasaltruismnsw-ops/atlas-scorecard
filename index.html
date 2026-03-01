@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Your Electrical Business Leaving Money on the Table?</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f0f0f;
+    color: #f0f0f0;
+    min-height: 100vh;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+    border-bottom: 3px solid #f5a623;
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+
+  .hero .badge {
+    display: inline-block;
+    background: #f5a623;
+    color: #000;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(24px, 5vw, 42px);
+    font-weight: 800;
+    line-height: 1.15;
+    max-width: 680px;
+    margin: 0 auto 16px;
+  }
+
+  .hero h1 span { color: #f5a623; }
+
+  .hero p {
+    color: #999;
+    font-size: 16px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .progress-bar {
+    background: #222;
+    border-radius: 8px;
+    height: 6px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    background: #f5a623;
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  .progress-label {
+    text-align: right;
+    font-size: 12px;
+    color: #666;
+    margin-top: 6px;
+    margin-bottom: 32px;
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #f5a623;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #222;
+  }
+
+  .question {
+    margin-bottom: 32px;
+  }
+
+  .question h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: #1a1a1a;
+    border: 2px solid #2a2a2a;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 15px;
+  }
+
+  .option:hover {
+    border-color: #f5a623;
+    background: #1e1a10;
+  }
+
+  .option.selected {
+    border-color: #f5a623;
+    background: #1e1a10;
+  }
+
+  .option .dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #444;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .option.selected .dot {
+    border-color: #f5a623;
+    background: #f5a623;
+  }
+
+  .option.selected .dot::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #000;
+    border-radius: 50%;
+  }
+
+  .contact-section {
+    background: #1a1a1a;
+    border: 2px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 32px;
+  }
+
+  .contact-section h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .contact-section p {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #aaa;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    background: #111;
+    border: 2px solid #2a2a2a;
+    border-radius: 8px;
+    color: #f0f0f0;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus, .form-group select:focus {
+    border-color: #f5a623;
+  }
+
+  .form-group select option { background: #111; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 18px;
+    background: #f5a623;
+    color: #000;
+    font-size: 17px;
+    font-weight: 800;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-submit:hover { background: #e09510; transform: translateY(-1px); }
+  .btn-submit:disabled { background: #333; color: #666; cursor: not-allowed; transform: none; }
+
+  /* Results screen */
+  .results {
+    display: none;
+    text-align: center;
+  }
+
+  .score-circle {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin: 0 auto 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: 900;
+  }
+
+  .score-circle .score-label {
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.8;
+    margin-top: 4px;
+  }
+
+  .score-red { background: rgba(220,50,50,0.15); border: 4px solid #dc3232; color: #dc3232; }
+  .score-amber { background: rgba(245,166,35,0.15); border: 4px solid #f5a623; color: #f5a623; }
+  .score-green { background: rgba(40,200,100,0.15); border: 4px solid #28c864; color: #28c864; }
+
+  .result-title { font-size: 26px; font-weight: 800; margin-bottom: 12px; }
+  .result-subtitle { color: #888; font-size: 16px; max-width: 480px; margin: 0 auto 32px; line-height: 1.5; }
+
+  .breakdown {
+    background: #1a1a1a;
+    border: 2px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 28px;
+    text-align: left;
+  }
+
+  .breakdown h4 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #f5a623;
+    margin-bottom: 16px;
+  }
+
+  .breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #222;
+    font-size: 14px;
+  }
+
+  .breakdown-item:last-child { border-bottom: none; }
+
+  .breakdown-item .area { color: #ccc; }
+
+  .pill {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .pill-red { background: rgba(220,50,50,0.2); color: #ff6b6b; }
+  .pill-amber { background: rgba(245,166,35,0.2); color: #f5a623; }
+  .pill-green { background: rgba(40,200,100,0.2); color: #28c864; }
+
+  .cta-box {
+    background: linear-gradient(135deg, #1e1a10, #1a1a1a);
+    border: 2px solid #f5a623;
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+
+  .cta-box h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+  .cta-box p { color: #999; font-size: 14px; margin-bottom: 20px; }
+
+  .btn-cta {
+    display: inline-block;
+    padding: 16px 32px;
+    background: #f5a623;
+    color: #000;
+    font-size: 16px;
+    font-weight: 800;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-cta:hover { background: #e09510; }
+
+  @media (max-width: 480px) {
+    .hero { padding: 36px 20px 32px; }
+    .container { padding: 32px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">Free Business Diagnostic</div>
+  <h1>Is Your Electrical Business <span>Leaving Money</span> on the Table?</h1>
+  <p>2-minute diagnostic for electrical contractors. Find out exactly where you're bleeding time and profit.</p>
+</div>
+
+<div class="container" id="quiz-container">
+  <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+  <div class="progress-label" id="progress-label">0 of 10 answered</div>
+
+  <!-- Section 1: Quoting -->
+  <div class="section-title">Section 1 — Quoting</div>
+
+  <div class="question" id="q1">
+    <h3>1. How long does it take to quote a standard job?</h3>
+    <div class="options">
+      <div class="option" data-q="1" data-score="4">
+        <div class="dot"></div> Under 30 minutes
+      </div>
+      <div class="option" data-q="1" data-score="3">
+        <div class="dot"></div> 30–60 minutes
+      </div>
+      <div class="option" data-q="1" data-score="2">
+        <div class="dot"></div> 1–2 hours
+      </div>
+      <div class="option" data-q="1" data-score="1">
+        <div class="dot"></div> 2+ hours
+      </div>
+    </div>
+  </div>
+
+  <div class="question" id="q2">
+    <h3>2. How often do you win jobs but still lose money on them?</h3>
+    <div class="options">
+      <div class="option" data-q="2" data-score="4">
+        <div class="dot"></div> Rarely or never
+      </div>
+      <div class="option" data-q="2" data-score="3">
+        <div class="dot"></div> Sometimes (1 in 10)
+      </div>
+      <div class="option" data-q="2" data-score="2">
+        <div class="dot"></div> Often (1 in 5)
+      </div>
+      <div class="option" data-q="2" data-score="1">
+        <div class="dot"></div> Most jobs
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Job Costing -->
+  <div class="section-title">Section 2 — Job Costing</div>
+
+  <div class="question" id="q3">
+    <h3>3. Do you track actual vs estimated costs per job?</h3>
+    <div class="options">
+      <div class="option" data-q="3" data-score="4">
+        <div class="dot"></div> Yes, every job
+      </div>
+      <div class="option" data-q="3" data-score="3">
+        <div class="dot"></div> Sometimes
+      </div>
+      <div class="option" data-q="3" data-score="2">
+        <div class="dot"></div> Rarely
+      </div>
+      <div class="option" data-q="3" data-score="1">
+        <div class="dot"></div> Never
+      </div>
+    </div>
+  </div>
+
+  <div class="question" id="q4">
+    <h3>4. Do you know your average profit margin per job type?</h3>
+    <div class="options">
+      <div class="option" data-q="4" data-score="4">
+        <div class="dot"></div> Yes, clearly
+      </div>
+      <div class="option" data-q="4" data-score="3">
+        <div class="dot"></div> Rough idea
+      </div>
+      <div class="option" data-q="4" data-score="2">
+        <div class="dot"></div> Not really
+      </div>
+      <div class="option" data-q="4" data-score="1">
+        <div class="dot"></div> No idea
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Scheduling -->
+  <div class="section-title">Section 3 — Scheduling & Operations</div>
+
+  <div class="question" id="q5">
+    <h3>5. How often do jobs run over time due to poor planning?</h3>
+    <div class="options">
+      <div class="option" data-q="5" data-score="4">
+        <div class="dot"></div> Rarely
+      </div>
+      <div class="option" data-q="5" data-score="3">
+        <div class="dot"></div> Monthly
+      </div>
+      <div class="option" data-q="5" data-score="2">
+        <div class="dot"></div> Weekly
+      </div>
+      <div class="option" data-q="5" data-score="1">
+        <div class="dot"></div> Daily
+      </div>
+    </div>
+  </div>
+
+  <div class="question" id="q6">
+    <h3>6. How do you schedule your team?</h3>
+    <div class="options">
+      <div class="option" data-q="6" data-score="4">
+        <div class="dot"></div> Dedicated scheduling software
+      </div>
+      <div class="option" data-q="6" data-score="3">
+        <div class="dot"></div> Spreadsheet or calendar
+      </div>
+      <div class="option" data-q="6" data-score="2">
+        <div class="dot"></div> Whiteboard or paper
+      </div>
+      <div class="option" data-q="6" data-score="1">
+        <div class="dot"></div> In my head
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Cash Flow -->
+  <div class="section-title">Section 4 — Cash Flow</div>
+
+  <div class="question" id="q7">
+    <h3>7. How often do you chase unpaid invoices?</h3>
+    <div class="options">
+      <div class="option" data-q="7" data-score="4">
+        <div class="dot"></div> Rarely — my system handles it
+      </div>
+      <div class="option" data-q="7" data-score="3">
+        <div class="dot"></div> Monthly
+      </div>
+      <div class="option" data-q="7" data-score="2">
+        <div class="dot"></div> Weekly
+      </div>
+      <div class="option" data-q="7" data-score="1">
+        <div class="dot"></div> It's a constant problem
+      </div>
+    </div>
+  </div>
+
+  <div class="question" id="q8">
+    <h3>8. Do you know your break-even number each month?</h3>
+    <div class="options">
+      <div class="option" data-q="8" data-score="4">
+        <div class="dot"></div> Yes, exactly
+      </div>
+      <div class="option" data-q="8" data-score="3">
+        <div class="dot"></div> Roughly
+      </div>
+      <div class="option" data-q="8" data-score="2">
+        <div class="dot"></div> Not really
+      </div>
+      <div class="option" data-q="8" data-score="1">
+        <div class="dot"></div> No
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Team -->
+  <div class="section-title">Section 5 — Team & Communication</div>
+
+  <div class="question" id="q9">
+    <h3>9. How often do your team call you asking what to do next?</h3>
+    <div class="options">
+      <div class="option" data-q="9" data-score="4">
+        <div class="dot"></div> Rarely — they're self-directed
+      </div>
+      <div class="option" data-q="9" data-score="3">
+        <div class="dot"></div> A few times a week
+      </div>
+      <div class="option" data-q="9" data-score="2">
+        <div class="dot"></div> Daily
+      </div>
+      <div class="option" data-q="9" data-score="1">
+        <div class="dot"></div> Constantly
+      </div>
+    </div>
+  </div>
+
+  <div class="question" id="q10">
+    <h3>10. Do you have documented SOPs for recurring tasks?</h3>
+    <div class="options">
+      <div class="option" data-q="10" data-score="4">
+        <div class="dot"></div> Yes, most things are documented
+      </div>
+      <div class="option" data-q="10" data-score="3">
+        <div class="dot"></div> A few things
+      </div>
+      <div class="option" data-q="10" data-score="2">
+        <div class="dot"></div> Almost nothing
+      </div>
+      <div class="option" data-q="10" data-score="1">
+        <div class="dot"></div> Nothing documented
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-section">
+    <h3>Where should I send your results?</h3>
+    <p>I'll personally review your answers and send a breakdown within 24 hours.</p>
+
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" id="name" placeholder="John Smith">
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="email" placeholder="john@yourcompany.com.au">
+    </div>
+    <div class="form-group">
+      <label>Business Name</label>
+      <input type="text" id="business" placeholder="Smith Electrical">
+    </div>
+    <div class="form-group">
+      <label>Number of Staff</label>
+      <select id="staff">
+        <option value="">Select...</option>
+        <option>Just me</option>
+        <option>2–5</option>
+        <option>6–15</option>
+        <option>16–30</option>
+        <option>30+</option>
+      </select>
+    </div>
+  </div>
+
+  <button class="btn-submit" id="submit-btn" onclick="showResults()">
+    Show My Results →
+  </button>
+</div>
+
+<!-- Results -->
+<div class="container results" id="results-container">
+  <div id="score-circle" class="score-circle">
+    <div id="score-number"></div>
+    <div class="score-label">/ 40</div>
+  </div>
+
+  <div id="result-title" class="result-title"></div>
+  <div id="result-subtitle" class="result-subtitle"></div>
+
+  <div class="breakdown">
+    <h4>Your Breakdown by Area</h4>
+    <div class="breakdown-item">
+      <span class="area">Quoting Speed & Accuracy</span>
+      <span class="pill" id="pill-quoting"></span>
+    </div>
+    <div class="breakdown-item">
+      <span class="area">Job Costing</span>
+      <span class="pill" id="pill-costing"></span>
+    </div>
+    <div class="breakdown-item">
+      <span class="area">Scheduling & Operations</span>
+      <span class="pill" id="pill-scheduling"></span>
+    </div>
+    <div class="breakdown-item">
+      <span class="area">Cash Flow</span>
+      <span class="pill" id="pill-cashflow"></span>
+    </div>
+    <div class="breakdown-item">
+      <span class="area">Team & Communication</span>
+      <span class="pill" id="pill-team"></span>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h3>Want to fix this fast?</h3>
+    <p>Book a free 15-minute call with Thai Tran. No pitch — just a straight conversation about your biggest bottleneck.</p>
+    <a href="YOUR_CALENDLY_LINK" class="btn-cta" target="_blank">Book a Free Call →</a>
+  </div>
+</div>
+
+<script>
+  const scores = {};
+
+  document.querySelectorAll('.option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const q = opt.dataset.q;
+      document.querySelectorAll(`[data-q="${q}"]`).forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      scores[q] = parseInt(opt.dataset.score);
+      updateProgress();
+    });
+  });
+
+  function updateProgress() {
+    const answered = Object.keys(scores).length;
+    const pct = (answered / 10) * 100;
+    document.getElementById('progress').style.width = pct + '%';
+    document.getElementById('progress-label').textContent = `${answered} of 10 answered`;
+  }
+
+  function getPill(score) {
+    if (score >= 7) return ['pill-green', 'Strong ✓'];
+    if (score >= 5) return ['pill-amber', 'At Risk'];
+    return ['pill-red', 'Critical'];
+  }
+
+  function showResults() {
+    const answered = Object.keys(scores).length;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (answered < 10) { alert('Please answer all 10 questions first.'); return; }
+    if (!name || !email) { alert('Please enter your name and email.'); return; }
+
+    const total = Object.values(scores).reduce((a, b) => a + b, 0);
+
+    const sectionScores = {
+      quoting: (scores['1'] || 0) + (scores['2'] || 0),
+      costing: (scores['3'] || 0) + (scores['4'] || 0),
+      scheduling: (scores['5'] || 0) + (scores['6'] || 0),
+      cashflow: (scores['7'] || 0) + (scores['8'] || 0),
+      team: (scores['9'] || 0) + (scores['10'] || 0)
+    };
+
+    document.getElementById('quiz-container').style.display = 'none';
+    document.getElementById('results-container').style.display = 'block';
+
+    const circle = document.getElementById('score-circle');
+    document.getElementById('score-number').textContent = total;
+
+    let ratingClass, title, subtitle;
+    if (total <= 20) {
+      ratingClass = 'score-red';
+      title = '🚨 Your business has serious leaks';
+      subtitle = `${name}, based on your answers you're losing significant revenue to inefficiency. The good news — these are fixable problems with the right systems.`;
+    } else if (total <= 30) {
+      ratingClass = 'score-amber';
+      title = '⚠️ You\'re leaving money on the table';
+      subtitle = `${name}, you've got a decent foundation but there are clear gaps costing you time and profit each month. A few targeted fixes could make a big difference.`;
+    } else {
+      ratingClass = 'score-green';
+      title = '✅ Strong fundamentals — room to scale';
+      subtitle = `${name}, you're running a tighter ship than most. The opportunity now is optimising and systemising so you can scale without the chaos.`;
+    }
+
+    circle.className = 'score-circle ' + ratingClass;
+    document.getElementById('result-title').textContent = title;
+    document.getElementById('result-subtitle').textContent = subtitle;
+
+    const sections = ['quoting', 'costing', 'scheduling', 'cashflow', 'team'];
+    const pillIds = ['pill-quoting', 'pill-costing', 'pill-scheduling', 'pill-cashflow', 'pill-team'];
+
+    sections.forEach((s, i) => {
+      const [cls, label] = getPill(sectionScores[s]);
+      const el = document.getElementById(pillIds[i]);
+      el.textContent = label;
+      el.className = 'pill ' + cls;
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
