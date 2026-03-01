@@ -569,6 +569,17 @@
     </div>
   </div>
 
+  <!-- Netlify hidden form -->
+  <form name="scorecard-leads" netlify data-netlify="true" hidden>
+    <input type="hidden" name="form-name" value="scorecard-leads">
+    <input type="text" name="name"><input type="email" name="email">
+    <input type="text" name="business"><input type="text" name="staff">
+    <input type="text" name="total_score"><input type="text" name="rating">
+    <input type="text" name="quoting_score"><input type="text" name="costing_score">
+    <input type="text" name="scheduling_score"><input type="text" name="cashflow_score">
+    <input type="text" name="team_score">
+  </form>
+
   <button class="btn-submit" id="submit-btn" onclick="showResults()">
     Show My Results →
   </button>
@@ -695,6 +706,25 @@
     });
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Capture lead via Netlify Forms
+    const business = document.getElementById('business').value.trim();
+    const staff = document.getElementById('staff').value;
+    const rating = total <= 20 ? 'Critical' : total <= 30 ? 'At Risk' : 'Strong';
+    const formData = new FormData();
+    formData.append('form-name', 'scorecard-leads');
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('business', business);
+    formData.append('staff', staff);
+    formData.append('total_score', total + '/40');
+    formData.append('rating', rating);
+    formData.append('quoting_score', sectionScores.quoting + '/8');
+    formData.append('costing_score', sectionScores.costing + '/8');
+    formData.append('scheduling_score', sectionScores.scheduling + '/8');
+    formData.append('cashflow_score', sectionScores.cashflow + '/8');
+    formData.append('team_score', sectionScores.team + '/8');
+    fetch('/', { method: 'POST', body: formData }).catch(() => {});
   }
 </script>
 </body>
